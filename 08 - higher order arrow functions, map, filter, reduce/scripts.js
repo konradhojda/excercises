@@ -1,15 +1,15 @@
-// easy function to return doubled value
+// Arrow functions is really well with higher order functions such as map, filter and reduce.
 
-const doubleValue = (value) => console.log(value * 2);
+// Task is about using arrow function syntax to compute the square of only positive integers
+// decimals are not integers. I will use realNumberArray and create new array to store values i want.
 
-const doubleAndAddValue = (value, add) => {
-    console.log(value * 2 + add);
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+const squareList = (arr) => {
+    const squaredIntegers = arr.filter((num) => num > 0 && num % parseInt(num) === 0).map((num) => Math.pow(num,2));
 };
 
-const myConcat = (arr1, arr2) => {
-  let concatedArrays = arr1.concat(arr2);
-  console.log(concatedArrays);
-  // but i can show them only using arr1.concat(arr2)
-};
+//or we can do it in one line
+// const squareList = (arr) => arr.filter((num) => num > 0 && num % parseInt(num) === 0).map((num) => Math.pow(num,2));
 
-myConcat([1, 2], [3, 4, 5]);
+squareList(realNumberArray);
