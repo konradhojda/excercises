@@ -1,37 +1,28 @@
-// json
-
-let someObject = {
-    id: 555,
-    style: 'someStyle'
-};
-
-console.log(JSON.stringify(someObject));
-
-let newObject = [
-    {id: 555},
-    {id: 222},
-    {id: 234}
+let someIds = [
+    {id: 123, style: 'blabla'},
+    {id: 222, style: 'bebe'},
+    {id: 227, style: 'babakaka'}
 ];
 
-console.log(JSON.stringify(newObject));
+someIds.forEach(car => console.log(car)); // to output all cars objects
+someIds.forEach((car, index) => console.log(car, index));
 
-// parse JSON
+someIds.map(el => console.log(el));
 
-let jsonIn =
-    `
-    [
-    {"id" : 555},
-    {"id": 333},
-    {"id": 2556}
-    ]
-`;
+let filteredArray = someIds.filter(function(el) {
+    return el.id > 123;
+});
 
-let parsedJSON = JSON.parse(jsonIn);
-console.log(parsedJSON);
+console.log(filteredArray);
 
-let stringedJsonIn = JSON.stringify(parsedJSON);
-console.log(stringedJsonIn);
+// every
 
-// or
+let everyResult = someIds.every(
+    car => car.id > 122
+);
 
-console.log(JSON.stringify(parsedJSON));
+let findElement = someIds.find(
+    car => car.id > 123
+);
+
+console.log(findElement);
