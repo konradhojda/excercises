@@ -1,18 +1,8 @@
-class Vehicle {
-    constructor() {
-        console.log('constructing vehicle!');
-    }
-}
-
-class Drone extends Vehicle {
-
-}
-
-class Car extends Vehicle {
-    constructor() {
-        super();
-        console.log('constructing car!');
-    }
-}
+import {Car} from "./classes/car.js";
+import {Drone} from "./classes/drone.js";
 
 let c = new Car();
+let d = new Drone();
+
+console.log(c);
+console.log(d);
