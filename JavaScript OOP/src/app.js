@@ -6,8 +6,14 @@ import {FleetDataService} from "./services/fleet-data-service.js";
 let dataService = new FleetDataService();
 dataService.loadData(fleet);
 
-for (let e of dataService.errors) {
-    console.log(e.message)
+//let car = dataService.getCarByLicense('AT9900');
+// let cars = dataService.getCardSortedByLicense();
+
+let cars = dataService.filterCarByMake('e');
+console.log(cars);
+
+for (let car of cars) {
+    console.log(car)
 }
 
 // console.log(dataService.drones);

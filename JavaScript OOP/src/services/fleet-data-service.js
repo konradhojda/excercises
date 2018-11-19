@@ -56,7 +56,7 @@ export class FleetDataService {
         let hasErrors = false;
         for (let field of requiredProps) {
             if (!drone[field]) {
-                this.errors.push(new DataError(`Missing Props, please check: ${field}`, drone));
+                this.errors.push(new DataError(`Missing Props, please check: ${field} at ${drone.model}`, drone));
                 hasErrors = false;
             }
         }
@@ -66,6 +66,28 @@ export class FleetDataService {
         }
         return !hasErrors;
     };
+
+    getCarByLicense(license) {
+        return this.cars.find(function(car) {
+            return car.license === license;
+        });
+    };
+
+    getCardSortedByLicense() {
+        return this.cars.sort(function(car1, car2) {
+            if (car1.license < car2.license) {
+                return -1;
+            }
+            if (car1.license > car2. license) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+
+    filterCarByMake(filter) {
+        return this.cars.filter(car => car.make.indexOf(filter) >= 0);
+    }
 
     loadData(fleet) {
         for (let data of fleet) {
@@ -83,7 +105,10 @@ export class FleetDataService {
                     break;
                 case 'drone':
                     if (this.validateDroneData(data)) {
-                        this.drones.push(data);
+                       let drone = this.loadDrone(data);
+                       if (drone) {
+                           this.drones.push(drone);
+                       }
                     } else {
                         let e = new DataError('invalid drone data', data);
                         this.errors.push(e);
