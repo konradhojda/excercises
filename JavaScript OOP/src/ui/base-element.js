@@ -1,21 +1,27 @@
-import $ from 'jquery'
+import $ from 'jquery';
 
 export class BaseElement {
+
     constructor() {
-        this.element = null; // jquery Object
+        this.element = null;  // jQuery object
     }
 
     appendToElement(el) {
         this.createElement();
         el.append(this.element);
+        this.enableJS();
     }
 
     createElement() {
         let s = this.getElementString();
-        this.element = $(s);
+        this.element = jQuery(s);
     }
 
     getElementString() {
-        throw ('Please override getElementString in BaseElement');
+        throw 'Please override getElementString() in BaseElement';
+    }
+
+    enableJS() {
+        componentHandler.upgradeElement((this.element[0]));
     }
 }
